@@ -1,0 +1,24 @@
+<%inherit file="/homepage/templates/base_ajax.htm" />
+
+<%block name="content">
+    <ul class="recipe-list">
+        %if is_recipes:
+            %for r in recipes:
+                <li>
+                    <div class="recipe-tile">
+                        <a href="/homepage/recipe/${r.id}">
+                            <img class="recipe-img" src=${r.image_url()} />
+                            <p class="recipe-name">${r.name}</p>
+                        </a>
+                    </div>
+                </li>
+            %endfor
+        %else:
+            <li>
+                <div class="recipe-tile">
+                    <p class="recipe-name error-msg">Sorry, no recipes found.</p>
+                </div>
+            </li>
+        %endif
+    </ul>
+</%block>

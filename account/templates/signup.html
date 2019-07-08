@@ -1,0 +1,26 @@
+<%inherit file="homepage/templates/base.htm" />
+
+<%block name="centercontent">
+    <div class="my-form-div">
+
+        <h1 class="text-primary">Signup</h1>
+        <br />
+        
+        <form class="my-form" method='POST' autocomplete="off">
+            
+            ${ csrf_input }
+            
+            ${ form.as_p() }
+            
+            ## any extra
+            %if extra:
+            ${ extra }
+            %endif
+            
+            <div class="form-buttons">
+                <button class="button is-primary is-medium" type="submit">Sign up</button>
+            </div>
+        </form>
+
+  </div>
+</%block>

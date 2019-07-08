@@ -1,0 +1,85 @@
+<%inherit file="base.htm" />
+<%! from homepage.models import Category, Recipe %>
+
+<%block name="middlenav">
+<div class="navbox center-nav-box">
+    <div class="navitem">
+        <form action="/homepage/index" method="POST">
+            <div class="search-form search-form-big">
+                ${ csrf_input }
+                <input id="search-bar" placeholder="Search..." type="text" name="search" autocomplete="off"/>
+                <button type="submit" id="search-button"><span class="fa fa-search"></span></button>
+            </div>
+        </form>
+    </div>
+    <div class="navitem">
+        <a href="#"><span onclick="toggleDropdown('full');" class="fa fa-caret-down"></span></a>
+        <form action="/homepage/index" method="POST" id="category-filter">
+            ${ csrf_input }
+            <input type="hidden" name="cat_id" id="cat_id" />   
+            <input type="hidden" name="my_rec" id="my_rec" />   
+            <ul class="dropdown-menu dropdown-menu-full">
+                %for c in Category.objects.all():
+                    <li class="categories" id="${c.id}">
+                        <a onclick="selectCategory('${c.id}')">${c.name}</a>
+                    </li>
+                %endfor
+            </ul>
+        </form>
+    </div>
+</div>
+</%block>
+
+<%block name="mininavitems">
+    <li>
+        <form action="/homepage/index" method="POST">
+            <div class="search-form search-form-small">
+                ${ csrf_input }
+                <input id="search-bar" placeholder="Search..." type="text" name="search" autocomplete="off"/>
+                <button type="submit" id="search-button"><span class="fa fa-search"></span></button>
+            </div>
+        </form>
+    </li>
+    %if request.user.is_authenticated:
+        <li onclick="miniMenuRecToggle()">
+            %if my_rec:
+                Show all recipes
+            %else:
+                Show my recipes
+            %endif
+        </li>
+    %endif
+</%block>
+
+<%block name="pageheader">
+    <div class="switch-div">
+        %if request.user.is_authenticated:
+        <label class="switch">
+            %if my_rec:
+                <input id="switch" type="checkbox" checked>
+            %else:
+                <input id="switch" type="checkbox">
+            %endif
+            <span class="slider round"></span>
+        </label>
+        %endif
+    </div>
+    <div class="page-title">
+        %if my_rec:
+            <h1>My ${cat_name}Recipes</h1>
+        %else:
+            <h1>All ${cat_name}Recipes</h1>
+        %endif
+    </div>
+    <div class="paginator">
+        <a class="pag-button prev"><span class="fa fa-arrow-left"></span></a>
+        <p>Page <span id="page-num">1</span> out of <span id="num_pages">${num_pages}</span></p>
+        <a class="pag-button next"><span class="fa fa-arrow-right"></span></a>
+    </div>
+</%block>
+
+<%block name="maincontent">
+    <div class="recipes-gutter"></div>
+    <div class="recipes-main" id="recipes"></div>
+    <div class="recipes-gutter"></div>
+</%block>

@@ -1,0 +1,262 @@
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    font-family: sans-serif;
+    margin: 0;
+    font-size: 100%;
+}
+
+.navbar .fa {
+    font-size: 1.75em;
+    color: black;
+}
+
+.full-navbar {
+    display: flex;
+    flex-shrink: 10;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgb(192, 192, 192);
+}
+
+.navbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.side-nav-box {
+    flex: 1 0 0;
+    justify-content: space-around;
+}
+
+.center-nav-box {
+    flex: 8 0 0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    display: none;
+    padding: 5px;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.dropdown-menu-full {
+    background-color: #ffffff;
+    border: 1px solid gray;
+    padding: 7px;
+    flex-direction: column;
+}
+
+.dropdown-menu-mini {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background-color: #ffffff;
+    width: 100%;
+    margin-left: -10px;
+    margin-top: 10px; 
+    flex-direction: column;
+    border-radius: 0px;
+}
+
+.dropdown-menu-mini li {
+    padding: 7px 7px;
+}
+
+.dropdown-menu-full li {
+    padding: 5px 7px;
+    border-radius: 5px;
+}
+
+.dropdown-menu-full li:hover {
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+
+.dropdown-menu li a {
+    color: black;
+    text-decoration: none;
+}
+
+.mini-navbar {
+    display: flex;
+    flex-shrink: 10;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    display: none;
+    border-bottom: 1px solid rgb(192, 192, 192);
+    z-index: 1;
+}
+
+@media only screen and (max-width: 600px) {
+    /* hide full navbar */
+    .full-navbar {
+        display: none;
+    }
+
+    .mini-navbar {
+        display: block;
+    }
+}
+
+.search-form input {
+    font-size: 1.3em;
+    border-radius: 5px;
+    padding-left: 5px;
+    border-width: 2px;
+    width: auto;
+}
+
+.search-form button {
+    background-color: inherit;
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+#main {
+    flex-grow: 1;
+    margin-top: 10px;
+}
+
+#main-content {
+    display: flex;
+}
+
+#page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#left-content, #right-content {
+    display: flex;
+    flex: 1 0 0;
+}
+
+#center-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+}
+
+@media only screen and (max-width: 600px) {
+    #center-content {
+        flex: 3 0 0;
+    }
+}
+
+.my-form-div {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+
+/* FORM STUFF */
+form ul.errorlist {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.my-form ul.errorlist > li {
+    display: inline-block;
+    background-color: #397aeb;
+    color: #ffffff;
+    border-radius: .25em;
+    margin: 12px 0 3px 0;
+    padding: .2em .6em .3em .6em;
+    font-size: 85%;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+
+.my-form input {
+    width: 100%;
+    font-size: 1.2em;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.my-form select {
+    width: 100%;
+    font-size: 1.2em;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.my-form textarea {
+    width: 100%;
+    font-size: 1.2em;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: arial;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.my-btn {
+    border-radius: 5px;
+    /* background-color: rgb(214, 235, 255); */
+    border: solid 1px black;
+    padding: 10px;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.my-btn:hover {
+    background-color: #e6e6e6;
+}
+
+
+a {
+    color: #3273dc;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  a strong {
+    color: currentColor;
+  }
+  
+  a:hover {
+    color: #363636;
+  }
+
+.footer {
+    min-height: 10vh;
+}
+
+.search-form input {
+    font-size: 1em;
+    border-radius: 5px;
+    padding-left: 5px;
+    border-width: 2px;
+    width: auto;
+}
+
+.search-form-big input {
+    font-size: 1.3em;
+    width: 25vw;
+}
+
+.search-form button {
+    background-color: inherit;
+    border: none;
+    color: black;
+    cursor: pointer;
+}

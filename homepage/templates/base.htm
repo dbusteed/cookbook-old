@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sylvia's Cookbook</title>
+
+    <!-- <link rel="shortcut icon" href="${STATIC_URL}homepage/media/bowl.png">
+    <link rel="icon" href="${STATIC_URL}homepage/media/bowl.png"> -->
+    
+    <link rel="stylesheet" href="${STATIC_URL}homepage/media/bulma_buttons.css">
+
+    ## add any site-wide scripts or CSS here; for example, jquery:
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="${STATIC_URL}homepage/media/fa/fontawesome-all.min.css"> -->
+
+    ## render the static file links with the same name as this template
+    <script src="/django_mako_plus/dmp-common.min.js"></script>
+    ${ django_mako_plus.links(self) }
+
+</head>
+<body onload="focusSearch();">
+
+    <div class="navbar full-navbar">
+        <div class="navbox side-nav-box">
+            <div class="navitem">
+                <a href="/homepage/index"><span class="fa fa-home"></span></a>
+            </div>
+            <div class="navitem">
+                <a href="/homepage/add"><span class="fa fa-plus"></span></a>
+            </div>
+        </div>
+
+        <%block name="middlenav">
+            <div class="navbox center-nav-box"></div>
+        </%block>
+
+        <div class="navbox side-nav-box">
+            <div class="navitem">
+                %if request.user.is_authenticated:
+                    <a href="/account/logout"><span class="fa fa-sign-out"></span></a>
+                %else:
+                    <a href="/account/login"><span class="fa fa-sign-in"></span></a>
+                %endif
+            </div>
+        </div>
+    </div>
+    
+    <div class="navbar mini-navbar">
+        <div class="navitem">
+            <a href="#"><span onclick="toggleDropdown('mini');" class="fa fa-bars"></span></a>
+            <ul class="dropdown-menu dropdown-menu-mini">
+                <li><a href="/homepage/index">Home</a></li>
+                <li><a href="/homepage/add">Add Recipe</a></li>
+                <%block name="mininavitems"></%block>
+                %if request.user.is_authenticated:
+                    <li><a href="/account/logout">Logout</a></li>
+                %else:
+                    <li><a href="/account/login">Login</a></li>
+                %endif
+            </ul>
+        </div>
+    </div>
+
+    <div id="main">
+
+        <div id="page-header">
+            <%block name="pageheader"></%block>
+        </div>
+    
+        <div id="main-content">
+            <%block name="maincontent">
+                <div id="left-content">
+                    <%block name="leftcontent"></%block>
+                </div>
+                <div id="center-content">
+                    <%block name="centercontent"></%block>
+                </div>
+                <div id="right-content">
+                    <%block name="rightcontent"></%block>
+                </div>
+            </%block>
+        </div>
+
+    </div>
+
+    <div class="footer"></div>
+
+    <script>
+        function toggleDropdown(menu) {
+            var ddl = document.getElementsByClassName('dropdown-menu-'+menu)[0]
+
+            if (ddl.style.display == '') {
+                ddl.style.display = 'flex';
+            } else {
+                ddl.style.display = '';
+            }
+        }
+
+        function focusSearch() {
+            var url = document.URL;
+
+            if(!url.includes('account')) {
+                if(url.includes('homepage')) {
+                    if(url.includes('index')) {
+                        document.getElementById('search-bar').focus();
+                    }
+                } else {
+                    document.getElementById('search-bar').focus();
+                }
+            }
+
+        }
+    </script>
+
+</body>
+</html>

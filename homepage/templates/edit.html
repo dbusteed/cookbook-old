@@ -1,0 +1,28 @@
+<%inherit file="homepage/templates/base.htm" />
+
+<%block name="centercontent">
+    <div class="my-form-div">
+        <div style="display: flex; flex-direction: row; justify-content: space-around; flex: 1 0 0; align-items: center;">
+            <h1 class="text-primary">Edit Recipe</h1>
+            <a href="/homepage/remove/${recipe.id}" class="button is-danger is-small">Delete Recipe</a>
+        </div>
+
+        <form class="my-form" method='POST' autocomplete="off">
+            ${ csrf_input }
+
+            ${ form.as_p() }
+
+            ## any extra
+            %if extra:
+                ${ extra }
+            %endif
+
+            <div class="form-buttons">
+                <button class="button is-primary is-medium">Update Recipe</button>
+            </div>
+        </form>
+
+    </div>
+</%block>
+
+

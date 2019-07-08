@@ -1,0 +1,16 @@
+*.log
+*.pyc
+*.pyo
+.DS_Store
+.cached_templates/
+cached_templates/
+__pycache__/
+*.xlsx
+*.sqlite3
+/static/
+__dmpcache__/
+static/
+.htaccess
+passenger_wsgi.py
+public/
+tmp/
