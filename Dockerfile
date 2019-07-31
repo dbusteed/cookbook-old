@@ -1,11 +1,15 @@
-FROM python:3.7
+FROM python:3.6
 
 RUN mkdir /app
 
 WORKDIR /app
 
-ADD . /app
+COPY . /app
 
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
-CMD ["python3", "manage.py", "runserver"]
+RUN python manage.py collectstatic --no-input
+
+EXPOSE 80
+
+CMD ["gunicorn", "--bind", ":80", "cookbook.wsgi:application"]
