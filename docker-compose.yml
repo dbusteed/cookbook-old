@@ -10,7 +10,7 @@ services:
       - app_network
 
   nginx:
-    image: nginx
+    image: nginx:stable
     ports:
       - 80:80
     volumes:
