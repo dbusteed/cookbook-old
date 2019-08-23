@@ -1,3 +1,5 @@
+<%! from homepage.models import Category %>
+
 <!DOCTYPE html>
 <html>
 <head>    
@@ -37,7 +39,7 @@
             <div class="navbox center-nav-box"></div>
         </%block>
 
-        <div class="navbox side-nav-box">
+        <div class="navbox side-nav-box side-nav-box-right">
             <div class="navitem">
                 %if request.user.is_authenticated:
                     <a href="/account/logout"><span class="fa fa-sign-out"></span></a>
@@ -54,6 +56,25 @@
             <ul class="dropdown-menu dropdown-menu-mini">
                 <li><a href="/homepage/index">Home</a></li>
                 <li><a href="/homepage/add">Add Recipe</a></li>
+                <li>
+                    <form action="/homepage/index" method="POST">
+                        <div class="search-form search-form-small">
+                            ${ csrf_input }
+                            <input id="search-bar" placeholder="Search..." type="text" name="search" autocomplete="off"/>
+                            <button type="submit" id="search-button"><span class="fa fa-search"></span></button>
+                        </div>
+                    </form>
+                </li>
+                <li>
+                    <a href="#" onclick="toggleDropdown('minicat');">Filter By Category</a>
+                    <ul class="dropdown-menu dropdown-menu-minicat">
+                        %for c in Category.objects.all():
+                            <li class="categories" id="${c.id}">
+                                <a onclick="selectCategory('${c.id}')">${c.name}</a>
+                            </li>
+                        %endfor
+                    </ul>
+                </li>
                 <%block name="mininavitems"></%block>
                 %if request.user.is_authenticated:
                     <li><a href="/account/logout">Logout</a></li>
