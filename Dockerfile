@@ -8,6 +8,8 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
+RUN python manage.py dmp_cleanup
+
 RUN python manage.py collectstatic --no-input
 
 EXPOSE 80
