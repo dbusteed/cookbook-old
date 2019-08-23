@@ -15,7 +15,7 @@
 #recipe-content {
     display: flex;
     flex: 1 0 0;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: row;
 }
@@ -64,4 +64,8 @@
 
 .notes {
     list-style: none;
+}
+
+.direction, .ingredient {
+    cursor: pointer;
 }
